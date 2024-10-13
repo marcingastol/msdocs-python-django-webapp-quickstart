@@ -3,50 +3,20 @@
 <head>
     <title>Hello Azure - Python Quickstart</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <link rel="icon" href="{% static 'favicon.ico' %}">
-    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="icon"href="{% static 'favicon.ico' %}">
 </head>
 <html>
    <body>
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">Azure Quickstart</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-     </nav>
      <main>
         <div class="px-4 py-3 my-2 text-center">
             <img class="d-block mx-auto mb-4" src="{% static 'images/azure-icon.svg' %}" alt="Azure Logo" width="192" height="192"/>
             <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
             <h1 class="display-6 fw-bold">Hello {{name}}</h1>
             <p class="fs-5">
-                It is wonderful to meet you! Welcome to Azure Quickstart.
+                It is nice to meet you!
             </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="{% url 'index' %}" class="btn btn-primary btn-lg px-4 gap-3">Back to Home</a>
-                <a href="#" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
-            </div>
+            <a href="{% url 'index' %}" class="btn btn-primary btn-lg px-4 gap-3">Back home</a>
           </div>
      </main>      
-     <footer class="footer mt-auto py-3 bg-light">
-        <div class="container text-center">
-            <span class="text-muted">&copy; 2024 Azure Quickstart. All rights reserved.</span>
-        </div>
-     </footer>
    </body>
 </html>
