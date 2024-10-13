@@ -3,143 +3,30 @@
 <head>
     <title>Hello Azure - Python Quickstart</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <link rel="icon" href="{% static 'favicon.ico' %}">
-    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        #gameCanvas {
-            border: 2px solid black;
-            background-color: #f0f0f0;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="icon"href="{% static 'favicon.ico' %}">
 </head>
 <html>
    <body>
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">Azure Quickstart</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-     </nav>
      <main>
         <div class="px-4 py-3 my-2 text-center">
             <img class="d-block mx-auto mb-4" src="{% static 'images/azure-icon.svg' %}" alt="Azure Logo" width="192" height="192"/>
-            <h1 class="display-6 fw-bold">Hello {{name}}</h1>
-            <p class="fs-5">
-                It is wonderful to meet you! Welcome to Azure Quickstart.
-            </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="{% url 'index' %}" class="btn btn-primary btn-lg px-4 gap-3">Back to Home</a>
-                <a href="#" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
+            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <h1 class="display-6 fw-bold text-primary">Welcome to Azure</h1>            
+          </div>
+        <form method="post" action="hello">
+            {% csrf_token %}
+            <div class="col-md-6 mx-auto text-center">
+                <label for="name" class="form-label fw-bold fs-5">Please tell me your name?</label>
+
+                <!-- <p class="lead mb-2">Could you please tell me your name?</p> -->
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
+                    <input type="text" class="form-control" id="name" name="name" style="max-width: 256px;">
+                  </div>            
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
+                  <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Say Hello</button>
+                </div>            
             </div>
-        </div>
-        <div class="container text-center">
-            <h3>Play a Simple Game!</h3>
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
-        </div>
-        <script>
-            const canvas = document.getElementById('gameCanvas');
-            const ctx = canvas.getContext('2d');
-            let x = canvas.width / 2;
-            let y = canvas.height - 30;
-            let dx = 2;
-            let dy = -2;
-            let ballRadius = 10;
-            let paddleHeight = 10;
-            let paddleWidth = 75;
-            let paddleX = (canvas.width - paddleWidth) / 2;
-            let rightPressed = false;
-            let leftPressed = false;
-
-            document.addEventListener("keydown", keyDownHandler, false);
-            document.addEventListener("keyup", keyUpHandler, false);
-
-            function keyDownHandler(e) {
-                if(e.key == "Right" || e.key == "ArrowRight") {
-                    rightPressed = true;
-                }
-                else if(e.key == "Left" || e.key == "ArrowLeft") {
-                    leftPressed = true;
-                }
-            }
-
-            function keyUpHandler(e) {
-                if(e.key == "Right" || e.key == "ArrowRight") {
-                    rightPressed = false;
-                }
-                else if(e.key == "Left" || e.key == "ArrowLeft") {
-                    leftPressed = false;
-                }
-            }
-
-            function drawBall() {
-                ctx.beginPath();
-                ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-                ctx.fillStyle = "#0095DD";
-                ctx.fill();
-                ctx.closePath();
-            }
-
-            function drawPaddle() {
-                ctx.beginPath();
-                ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-                ctx.fillStyle = "#0095DD";
-                ctx.fill();
-                ctx.closePath();
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawBall();
-                drawPaddle();
-
-                if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-                    dx = -dx;
-                }
-                if (y + dy < ballRadius) {
-                    dy = -dy;
-                } else if (y + dy > canvas.height - ballRadius) {
-                    if (x > paddleX && x < paddleX + paddleWidth) {
-                        dy = -dy;
-                    } else {
-                        document.location.reload();
-                    }
-                }
-
-                if(rightPressed && paddleX < canvas.width - paddleWidth) {
-                    paddleX += 7;
-                }
-                else if(leftPressed && paddleX > 0) {
-                    paddleX -= 7;
-                }
-
-                x += dx;
-                y += dy;
-            }
-
-            setInterval(draw, 10);
-        </script>
+        </form>
      </main>      
-     <footer class="footer mt-auto py-3 bg-light">
-        <div class="container text-center">
-            <span class="text-muted">&copy; 2024 Azure Quickstart. All rights reserved.</span>
-        </div>
-     </footer>
    </body>
 </html>
