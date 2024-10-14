@@ -3,30 +3,61 @@
 <head>
     <title>Hello Azure - Python Quickstart</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <link rel="icon"href="{% static 'favicon.ico' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <html>
    <body>
+     <!-- Navigation bar -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Azure Quickstart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+     </nav>
+
      <main>
         <div class="px-4 py-3 my-2 text-center">
             <img class="d-block mx-auto mb-4" src="{% static 'images/azure-icon.svg' %}" alt="Azure Logo" width="192" height="192"/>
-            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-            <h1 class="display-6 fw-bold text-primary">Welcome to Talent Days</h1>            
-          </div>
+            <h1 class="display-6 fw-bold text-primary">Welcome to Azure</h1>            
+        </div>
         <form method="post" action="hello">
             {% csrf_token %}
             <div class="col-md-6 mx-auto text-center">
                 <label for="name" class="form-label fw-bold fs-5">Please tell me your name?</label>
-
-                <!-- <p class="lead mb-2">Could you please tell me your name?</p> -->
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
                     <input type="text" class="form-control" id="name" name="name" style="max-width: 256px;">
-                  </div>            
+                </div>            
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
-                  <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Say Hello</button>
+                    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Say Hello</button>
+                    <button type="button" class="btn btn-secondary btn-lg px-4 gap-3">Back to Home</button>
+                    <button type="button" class="btn btn-info btn-lg px-4 gap-3">Learn More</button>
                 </div>            
             </div>
         </form>
-     </main>      
+     </main>   
+
+     <!-- Footer section -->
+     <footer class="bg-light text-center text-lg-start mt-5">
+         <div class="container p-4">
+             <p class="text-center">&copy; 2024 Azure Quickstart. All rights reserved.</p>
+         </div>
+     </footer>
+
+     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
    </body>
 </html>
